@@ -11,6 +11,7 @@ for x in range(1,10):
     url=url.format(x)
 
     result=requests.get(url=url)
+    
     if result.status_code==200:
         soup=bs(result.content,"lxml")
     tbody_tr=soup.select('tbody tr ')
