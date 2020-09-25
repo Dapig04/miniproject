@@ -14,9 +14,9 @@ for x in range(1,10):
     
     if result.status_code==200:
         soup=bs(result.content,"lxml")
+    
     tbody_tr=soup.select('tbody tr ')
 
-    #table=soup.find("table",{'movie_name':'movie_score'})
     new_table=[]
     for row in tbody_tr:
         name=""
@@ -31,7 +31,7 @@ for x in range(1,10):
         tr_data.find("br").extract()
         review=tr_data.text.strip()
         print(name,score,review)
-
+#db name= db.movie_review
         conn = sqlite3.connect("db.movie_review") 
         cur = conn.cursor()
         query='INSERT INTO movie_review_modify(name, score, review) VALUES(?,?,?)'
@@ -44,4 +44,3 @@ for x in range(1,10):
 
 
 
-#db name= db.movie_review
